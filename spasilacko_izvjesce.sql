@@ -13,7 +13,8 @@ mjesto_rada varchar(50) not null
 create table intervencija(
 sifra int not null primary key auto_increment,
 datum datetime,
-opis varchar(200) 
+opis varchar(200) ,
+smjena int not null
 );
 
 create table smjena(
@@ -21,7 +22,6 @@ sifra int not null primary key auto_increment,
 datumod datetime,
 datumdo datetime,
 spasilac int not null,
-intervencija int not null
 );
 
 create table provjera(
@@ -38,7 +38,7 @@ naziv varchar(50)
 alter table smjena add foreign key (spasilac) references spasilac(sifra);
 alter table smjena_provjera add foreign key (smjena) references smjena(sifra);
 alter table smjena_provjera add foreign key (provjera) references provjera(sifra);
-alter table smjena add foreign key (intervencija) references intervencija(sifra);
+alter table intervencija add foreign key (smjena) references smjena(sifra);
 
 
 
